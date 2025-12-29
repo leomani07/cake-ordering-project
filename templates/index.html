@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SweetBite - Cake Shop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Cake Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-light">
-<div class="container mt-4">
-    <h1 class="text-center mb-5">🎂 Welcome to SweetBite 🎂</h1>
-    <div class="row">
-        {% for cake in cakes %}
-        <div class="col-md-4 mb-4">
-            <div class="card shadow">
-                <img src="{{ cake.image }}" class="card-img-top" alt="{{ cake.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ cake.name }}</h5>
-                    <p class="card-text">{{ cake.description }}</p>
-                    <p class="fw-bold text-success">₹{{ cake.price }}</p>
-                    <a href="{{ url_for('order', cake_id=cake.id) }}" class="btn btn-primary w-100">Order Now</a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+<body>
+
+<h1 class="title">🍰 Sweet Cake Shop</h1>
+
+<div class="cake-container">
+    {% for cake in cakes %}
+    <div class="cake-card">
+        <img src="{{ url_for('static', filename='images/' + cake.image) }}">
+        <h2>{{ cake.name }}</h2>
+        <p>{{ cake.description }}</p>
+        <h3>₹{{ cake.price }}</h3>
+        <a href="{{ url_for('order', cake_id=cake.id) }}" class="btn">Order Now</a>
     </div>
+    {% endfor %}
 </div>
+
 </body>
 </html>
+
